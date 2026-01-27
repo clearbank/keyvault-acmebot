@@ -7,6 +7,7 @@ using KeyVault.Acmebot.Models;
 
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
+using Microsoft.Extensions.Logging;
 
 namespace KeyVault.Acmebot.Functions;
 
