@@ -8,6 +8,8 @@ public class AcmebotOptions
     [Url]
     public string Endpoint { get; set; } = "https://acme-v02.api.letsencrypt.org/";
 
+    public required string? PreferredProfile { get; set; } = null;
+
     [Required]
     public string Contacts { get; set; }
 
