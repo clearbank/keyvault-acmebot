@@ -144,12 +144,12 @@ public class SharedActivity : ISharedActivity
     {
         var acmeProtocolClient = await _acmeProtocolClientFactory.CreateClientAsync();
 
-        if (options.Value.PreferredProfile is null)
+        if (_options.Value.PreferredProfile is null)
         {
             return await acmeProtocolClient.CreateOrderAsync(dnsNames);
         }
 
-        return await acmeProtocolClient.CreateOrderAsync(dnsNames, preferredProfile: options.Value.PreferredProfile);
+        return await acmeProtocolClient.CreateOrderAsync(dnsNames, preferredProfile: _options.Value.PreferredProfile);
     }
 
     [FunctionName(nameof(Dns01Precondition))]
