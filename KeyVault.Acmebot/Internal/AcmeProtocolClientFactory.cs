@@ -36,7 +36,7 @@ public class AcmeProtocolClientFactory
         var accountKey = LoadState<AccountKey>("account_key.json");
         var directory = LoadState<ServiceDirectory>("directory.json");
 
-        var acmeProtocolClient = new AcmeProtocolClient(_baseUri, directory, account, accountKey?.GenerateSigner(), logger = _logger, usePostAsGet: true);
+        var acmeProtocolClient = new AcmeProtocolClient(_baseUri, directory, account, accountKey?.GenerateSigner(), logger: _logger, usePostAsGet: true);
 
         if (directory is null)
         {
