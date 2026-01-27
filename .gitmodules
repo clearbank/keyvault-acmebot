@@ -1,3 +1,4 @@
 [submodule "ACMESharpCore"]
 	path = ACMESharpCore
 	url = https://github.com/clearbank/ACMESharpCore.git
+	branch = acmebot
