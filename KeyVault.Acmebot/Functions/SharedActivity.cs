@@ -144,6 +144,8 @@ public class SharedActivity : ISharedActivity
     {
         var acmeProtocolClient = await _acmeProtocolClientFactory.CreateClientAsync();
 
+        _logger.LogInformation($"Creating order for {string.Join(", ", dnsNames)} using profile {_options.PreferredProfile ?? "null"}");
+
         if (_options.PreferredProfile is null)
         {
             return await acmeProtocolClient.CreateOrderAsync(dnsNames);
