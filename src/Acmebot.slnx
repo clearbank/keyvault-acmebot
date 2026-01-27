@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Acmebot/Acmebot.csproj" />
+  <Project Path="ACMESharpCore/src/ACMESharp/ACMESharp.csproj" />
+</Solution>

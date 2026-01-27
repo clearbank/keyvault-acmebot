@@ -146,11 +146,6 @@ public class SharedActivity : ISharedActivity
 
         _logger.LogInformation($"Creating order for {string.Join(", ", dnsNames)} using profile {_options.PreferredProfile ?? "null"}");
 
-        if (_options.PreferredProfile is null)
-        {
-            return await acmeProtocolClient.CreateOrderAsync(dnsNames);
-        }
-
         return await acmeProtocolClient.CreateOrderAsync(dnsNames, preferredProfile: _options.PreferredProfile);
     }
 

@@ -12,6 +12,13 @@ namespace KeyVault.Acmebot.Functions;
 
 public class SharedOrchestrator
 {
+    private readonly ILogger<SharedOrchestrator> _logger;
+
+    public SharedOrchestrator(ILogger<SharedOrchestrator> logger)
+    {
+        _logger = logger;
+    }
+
     [FunctionName(nameof(IssueCertificate))]
     public async Task IssueCertificate([OrchestrationTrigger] IDurableOrchestrationContext context)
     {
@@ -23,6 +30,7 @@ public class SharedOrchestrator
         await activity.Dns01Precondition(certificatePolicy.DnsNames);
 
         // 新しく ACME Order を作成する
+        _logger.LogInformation($"---- Issuing certificate for {string.Join(", ", certificatePolicy.DnsNames)}. Calling ISharedActivity.Order. ----");
         var orderDetails = await activity.Order(certificatePolicy.DnsNames);
 
         // 既に確認済みの場合は Challenge をスキップする

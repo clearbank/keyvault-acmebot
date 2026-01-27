@@ -11,6 +11,7 @@ using ACMESharp.Protocol.Resources;
 using KeyVault.Acmebot.Options;
 
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 
 using Newtonsoft.Json;
 
@@ -18,14 +19,16 @@ namespace KeyVault.Acmebot.Internal;
 
 public class AcmeProtocolClientFactory
 {
-    public AcmeProtocolClientFactory(IOptions<AcmebotOptions> options)
+    public AcmeProtocolClientFactory(IOptions<AcmebotOptions> options, ILogger logger)
     {
         _options = options.Value;
         _baseUri = new Uri(_options.Endpoint);
+        _logger = logger;
     }
 
     private readonly AcmebotOptions _options;
     private readonly Uri _baseUri;
+    private readonly ILogger _logger;
 
     public async Task<AcmeProtocolClient> CreateClientAsync()
     {
@@ -33,7 +36,7 @@ public class AcmeProtocolClientFactory
         var accountKey = LoadState<AccountKey>("account_key.json");
         var directory = LoadState<ServiceDirectory>("directory.json");
 
-        var acmeProtocolClient = new AcmeProtocolClient(_baseUri, directory, account, accountKey?.GenerateSigner(), usePostAsGet: true);
+        var acmeProtocolClient = new AcmeProtocolClient(_baseUri, directory, account, accountKey?.GenerateSigner(), logger = _logger, usePostAsGet: true);
 
         if (directory is null)
         {
