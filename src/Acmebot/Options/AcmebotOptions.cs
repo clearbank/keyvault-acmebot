@@ -7,6 +7,8 @@ public class AcmebotOptions
     [Required]
     public required Uri Endpoint { get; set; }
 
+    public required string? PrefferedProfile { get; set; } = null;
+
     [Required]
     public required string Contacts { get; set; }
 
