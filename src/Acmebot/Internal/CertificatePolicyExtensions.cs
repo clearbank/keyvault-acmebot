@@ -18,11 +18,7 @@ internal static class CertificatePolicyExtensions
         var certificatePolicy = new CertificatePolicy(WellKnownIssuerNames.Unknown, $"CN={certificatePolicyItem.DnsNames[0]}", subjectAlternativeNames)
         {
             KeySize = certificatePolicyItem.KeySize,
-            ReuseKey = certificatePolicyItem.ReuseKey,
-            EnhancedKeyUsage =
-            {
-                "1.3.6.1.5.5.7.3.1"
-            }
+            ReuseKey = certificatePolicyItem.ReuseKey
         };
 
         if (!string.IsNullOrEmpty(certificatePolicyItem.KeyType))
