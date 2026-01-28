@@ -55,7 +55,7 @@ public class RenewCertificate : HttpFunctionBase
         // Function input comes from the request content.
         var instanceId = await starter.StartNewAsync($"{nameof(RenewCertificate)}_{nameof(Orchestrator)}", null, certificateName);
 
-        log.LogInformation($"---- Started Renew Certificate orchestration with ID = '{instanceId}'. ----");
+        log.LogInformation($"Started Renew Certificate orchestration with ID = '{instanceId}'.");
 
         return AcceptedAtFunction($"{nameof(GetInstanceState)}_{nameof(GetInstanceState.HttpStart)}", new { instanceId }, null);
     }
