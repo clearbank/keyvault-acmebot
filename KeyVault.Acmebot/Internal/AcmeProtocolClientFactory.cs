@@ -26,7 +26,6 @@ public class AcmeProtocolClientFactory
 
     private readonly AcmebotOptions _options;
     private readonly Uri _baseUri;
-    private readonly ILogger _logger;
 
     public async Task<AcmeProtocolClient> CreateClientAsync()
     {
