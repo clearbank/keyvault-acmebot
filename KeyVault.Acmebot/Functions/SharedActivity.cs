@@ -121,7 +121,7 @@ public class SharedActivity : ISharedActivity
         return new CertificatePolicyItem
         {
             CertificateName = certificateName,
-            DnsNames = dnsNames.Length > 0 ? dnsNames : new[] { certificatePolicy.Subject[3..] },
+            DnsNames = dnsNames.Length > 0 ? dnsNames : (certificatePolicy.Subject.Length > 3 ? new[] { certificatePolicy.Subject[3..] } : new[] { certificatePolicy.Subject }),
             KeyType = certificatePolicy.KeyType?.ToString(),
             KeySize = certificatePolicy.KeySize,
             KeyCurveName = certificatePolicy.KeyCurveName?.ToString(),
