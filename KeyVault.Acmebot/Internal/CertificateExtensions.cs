@@ -40,7 +40,7 @@ internal static class CertificateExtensions
         {
             Id = certificate.Id,
             Name = certificate.Name,
-            DnsNames = dnsNames.Length > 0 ? dnsNames : (certificatePolicy.Subject.Length > 3 ? new[] { certificatePolicy.Subject[3..] } : new[] { certificatePolicy.Subject }),
+            DnsNames = dnsNames is { Length: > 0 } ? dnsNames : new[] { certificate.Policy.Subject.Length > 3 ? certificate.Policy.Subject[3..] : certificate.Policy.Subject },
             CreatedOn = certificate.Properties.CreatedOn.Value,
             ExpiresOn = certificate.Properties.ExpiresOn.Value,
             X509Thumbprint = ToHexString(certificate.Properties.X509Thumbprint),
